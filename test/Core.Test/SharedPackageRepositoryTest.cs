@@ -17,6 +17,8 @@ namespace NuGet.Test
         [InlineData("C", "3.1.2.4-rtm", "C.3.1.2.4-rtm\\C.3.1.2.4-rtm.nuspec", "C.3.1.2.4-rtm\\C.3.1.2.4-rtm.nupkg")]
         public void CallAddPackageWillAddBothNuspecFileAndNupkgFile(string id, string version, string nuspecPath, string nupkgPath)
         {
+            nuspecPath = PathFixUtility.FixPath(nuspecPath);
+            nupkgPath = PathFixUtility.FixPath(nupkgPath);
             // Arrange
             var fileSystem = new MockFileSystem("x:\root");
             var configFileSystem = new MockFileSystem();
@@ -62,6 +64,7 @@ namespace NuGet.Test
         public void CallRemovePackageWillRemoveNuspecFile(string id, string version, string unexpectedPath)
         {
             // Arrange
+            unexpectedPath = PathFixUtility.FixPath(unexpectedPath);
             var fileSystem = new MockFileSystem("x:\root");
             fileSystem.AddFile(unexpectedPath);
             var configFileSystem = new MockFileSystem();
@@ -81,6 +84,7 @@ namespace NuGet.Test
         public void CallRemovePackageWillRemoveNupkgFile(string id, string version, string unexpectedPath)
         {
             // Arrange
+            unexpectedPath = PathFixUtility.FixPath(unexpectedPath);
             var fileSystem = new MockFileSystem("x:\root");
             fileSystem.AddFile(unexpectedPath);
             var configFileSystem = new MockFileSystem();
@@ -100,6 +104,8 @@ namespace NuGet.Test
         public void CallRemovePackageWillRemoveBothNupkgFileAndNuSpecFile(string id, string version, string nuspecPath, string nupkgPath)
         {
             // Arrange
+            nuspecPath = PathFixUtility.FixPath(nuspecPath);
+            nupkgPath = PathFixUtility.FixPath(nupkgPath);
             var fileSystem = new MockFileSystem("x:\root");
             fileSystem.AddFile(nuspecPath);
             fileSystem.AddFile(nupkgPath);

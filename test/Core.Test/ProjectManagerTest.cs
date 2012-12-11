@@ -66,8 +66,8 @@ namespace NuGet.Test
             projectManager.AddPackageReference("A");
 
             // Assert
-            Assert.False(projectSystem.FileExists(@"foo\bar\file.pp"));
-            Assert.True(projectSystem.FileExists(@"foo\bar\file"));
+            Assert.False(projectSystem.FileExists(PathFixUtility.FixPath(@"foo\bar\file.pp")));
+            Assert.True(projectSystem.FileExists(PathFixUtility.FixPath(@"foo\bar\file")));
         }
 
         [Fact]
@@ -75,14 +75,14 @@ namespace NuGet.Test
         {
             // Arrange
             var portableCollection = new NetPortableProfileCollection();
-            portableCollection.Add(new NetPortableProfile("Profile104", new [] { VersionUtility.ParseFrameworkName("net45"), VersionUtility.ParseFrameworkName("sl5")}));
+            portableCollection.Add(new NetPortableProfile("Profile104", new[] { VersionUtility.ParseFrameworkName("net45"), VersionUtility.ParseFrameworkName("sl5") }));
 
             NetPortableProfileTable.Profiles = portableCollection;
 
             var sourceRepository = new MockPackageRepository();
             var projectSystem = new MockProjectSystem(new FrameworkName(".NETPortable, Version=1.0, Profile=Profile104"));
             var projectManager = new ProjectManager(sourceRepository, new DefaultPackagePathResolver(projectSystem), projectSystem, new MockPackageRepository());
-            IPackage packageA = PackageUtility.CreatePackage("A", "1.0", new[] { "silverlight4\\a.txt"});
+            IPackage packageA = PackageUtility.CreatePackage("A", "1.0", new[] { "silverlight4\\a.txt" });
             sourceRepository.AddPackage(packageA);
 
             // Act
@@ -191,7 +191,7 @@ namespace NuGet.Test
             var sourceRepository = new MockPackageRepository();
             var projectSystem = new MockProjectSystem(new FrameworkName(projectFramework));
             var projectManager = new ProjectManager(sourceRepository, new DefaultPackagePathResolver(projectSystem), projectSystem, new MockPackageRepository());
-            IPackage packageA = PackageUtility.CreatePackage("A", "1.0", new[] { "portable40-net40+wp7+silverlight4+windows\\two.txt", pickedContentFile});
+            IPackage packageA = PackageUtility.CreatePackage("A", "1.0", new[] { "portable40-net40+wp7+silverlight4+windows\\two.txt", pickedContentFile });
             sourceRepository.AddPackage(packageA);
 
             // Act
@@ -273,6 +273,8 @@ namespace NuGet.Test
         [InlineData("portable-net40+sl3+wp71\\one.txt", "portable-windows8+sl2\\two.txt")]
         public void AddPackageReferencePicksThePortableLibraryWithHigherVersionOfTheMatchingFrameworks(string contentFile, string otherContentFile)
         {
+            contentFile = PathFixUtility.FixPath(contentFile);
+            otherContentFile = PathFixUtility.FixPath(otherContentFile);
             // Arrange            
             var sourceRepository = new MockPackageRepository();
             var projectSystem = new MockProjectSystem(new FrameworkName("Silverlight, Version=4.0"));
@@ -296,8 +298,8 @@ namespace NuGet.Test
             var projectSystem = new MockProjectSystem(VersionUtility.ParseFrameworkName("portable-net45+sl5+wp71"));
             var projectManager = new ProjectManager(sourceRepository, new DefaultPackagePathResolver(projectSystem), projectSystem, new MockPackageRepository());
             IPackage packageA = PackageUtility.CreatePackage(
-                "A", 
-                "1.0", 
+                "A",
+                "1.0",
                 new[] { "portable-net45+sl5+wp8\\one.txt",
                         "portable-net45+sl5+wp71\\two.txt",
                         "portable-net45+sl5+wp71+win8\\three.txt",
@@ -305,7 +307,7 @@ namespace NuGet.Test
                         "portable-net40+sl4+wp71+win8\\five.txt",
                         "portable-net40+sl4+wp7+win8\\six.txt",
                         "portable-wp8+win8\\seven.txt" });
-            
+
             sourceRepository.AddPackage(packageA);
 
             // Act
@@ -1220,8 +1222,8 @@ namespace NuGet.Test
             var projectSystem = new MockProjectSystem();
             var projectManager = new ProjectManager(sourceRepository, new DefaultPackagePathResolver(projectSystem), projectSystem, new MockPackageRepository());
 
-            var packageA1 = PackageUtility.CreatePackage("A", "1.0", content: new string[] {"good"});
-            var packageA2 = PackageUtility.CreatePackage("A", "2.0-alpha", content: new string[] {"excellent"});
+            var packageA1 = PackageUtility.CreatePackage("A", "1.0", content: new string[] { "good" });
+            var packageA2 = PackageUtility.CreatePackage("A", "2.0-alpha", content: new string[] { "excellent" });
 
             // project has A 1.0 installed
             projectManager.LocalRepository.AddPackage(packageA1);
@@ -1508,7 +1510,7 @@ namespace NuGet.Test
             Assert.True(projectManager.LocalRepository.Exists(packageB20));
             Assert.True(projectManager.LocalRepository.Exists(packageC20));
         }
-        
+
         [Fact]
         public void UpdatePackageReferenceFromRepositoryChainedIncompatibleDependents()
         {
@@ -1734,7 +1736,7 @@ namespace NuGet.Test
 
             // Act & Assert            
             ExceptionAssert.Throws<InvalidOperationException>(
-                () => projectManager.AddPackageReference("A"), 
+                () => projectManager.AddPackageReference("A"),
                 "Could not install package 'A 1.0'. You are trying to install this package into a project that targets '.NETFramework,Version=v2.0', but the package does not contain any assembly references or content files that are compatible with that framework. For more information, contact the package author.");
             Assert.False(localRepository.Exists(mockPackage.Object));
         }
@@ -2001,8 +2003,8 @@ namespace NuGet.Test
             var localRepository = new MockPackageRepository();
             var mockRepository = new MockPackageRepository();
             var projectManager = new ProjectManager(mockRepository, new DefaultPackagePathResolver(projectSystem), projectSystem, localRepository);
-            var packageA = PackageUtility.CreatePackage("A", "1.0", dependencies: new [] { new PackageDependency("B") });
-            var packageB = PackageUtility.CreatePackage("B", "1.0-alpha", new [] { "net\\hello.txt" });
+            var packageA = PackageUtility.CreatePackage("A", "1.0", dependencies: new[] { new PackageDependency("B") });
+            var packageB = PackageUtility.CreatePackage("B", "1.0-alpha", new[] { "net\\hello.txt" });
             mockRepository.AddPackage(packageA);
             mockRepository.AddPackage(packageB);
 
@@ -2237,7 +2239,7 @@ namespace NuGet.Test
             var dependecySets = CreateDependencySet(".NETFramework, Version=" + dependencyVersion, dependency);
 
             IPackage packageA = PackageUtility.CreatePackageWithDependencySets("A", "1.0",
-                                                                dependencySets: new [] { dependecySets }, 
+                                                                dependencySets: new[] { dependecySets },
                                                                 content: new[] { "a.txt" });
 
             IPackage packageB = PackageUtility.CreatePackage("B", "1.0", content: new[] { "b.txt" });
@@ -2247,7 +2249,7 @@ namespace NuGet.Test
 
             // Act
             projectManager.AddPackageReference("A");
-            
+
             // Assert
             Assert.True(projectManager.LocalRepository.Exists("A"));
             Assert.True(projectManager.LocalRepository.Exists("B"));
@@ -2344,11 +2346,11 @@ namespace NuGet.Test
 
             var dependency = new PackageDependency("B", null);
             var dependencySet = new PackageDependencySet(
-                new FrameworkName(".NETFramework", new Version(dependencyVersion)), 
-                new PackageDependency[] {dependency});
+                new FrameworkName(".NETFramework", new Version(dependencyVersion)),
+                new PackageDependency[] { dependency });
 
             IPackage packageA = PackageUtility.CreatePackage("A", "1.0", content: new[] { "a.txt" });
-            Mock.Get(packageA).Setup(p => p.DependencySets).Returns(new [] {dependencySet});
+            Mock.Get(packageA).Setup(p => p.DependencySets).Returns(new[] { dependencySet });
 
             IPackage packageB = PackageUtility.CreatePackage("B", "1.0", content: new[] { "b.txt" });
 
@@ -2479,7 +2481,7 @@ namespace NuGet.Test
             sourceRepository.AddPackage(packageA2);
 
             projectManager.AddPackageReference("A", new SemanticVersion("1.0"));
-            
+
             Assert.True(projectManager.LocalRepository.Exists("A"));
             Assert.False(projectManager.LocalRepository.Exists("B"));
 
@@ -2544,7 +2546,7 @@ namespace NuGet.Test
             var projectSystem = new MockProjectSystem(new FrameworkName(".NETFramework", new Version("4.0")));
 
             var localRepository = new Mock<IPackageReferenceRepository>();
-            localRepository.Setup(p => p.AddPackage("A", 
+            localRepository.Setup(p => p.AddPackage("A",
                                                     new SemanticVersion("1.0"),
                                                     new FrameworkName(".NETFramework, Version=4.0"))).Verifiable();
 
@@ -2553,9 +2555,9 @@ namespace NuGet.Test
                                                     new FrameworkName(".NETFramework, Version=4.0"))).Verifiable();
 
             var projectManager = new ProjectManager(
-                sourceRepository, 
-                new DefaultPackagePathResolver(projectSystem), 
-                projectSystem, 
+                sourceRepository,
+                new DefaultPackagePathResolver(projectSystem),
+                projectSystem,
                 localRepository.Object);
 
             var dependency = new PackageDependency("B", null);
@@ -2581,14 +2583,14 @@ namespace NuGet.Test
         public void SafeUpdatingADependencyDoesNotUninstallPackage()
         {
             // Arrange
-            
+
             var projectSystem = new MockProjectSystem(new FrameworkName(".NETFramework", new Version("4.0")));
 
-            var packageA = PackageUtility.CreatePackage("A", "1.0", dependencies: new [] { new PackageDependency("C"), new PackageDependency("B") });
+            var packageA = PackageUtility.CreatePackage("A", "1.0", dependencies: new[] { new PackageDependency("C"), new PackageDependency("B") });
             var packageB10 = PackageUtility.CreatePackage("B", "1.0", dependencies: new[] { new PackageDependency("C") });
             var packageB101 = PackageUtility.CreatePackage("B", "1.0.1", dependencies: new[] { new PackageDependency("C") });
             var packageC = PackageUtility.CreatePackage("C", "1.0", content: new[] { "1.txt" });
-            
+
             var localRepository = new MockPackageRepository();
             var sourceRepository = new MockPackageRepository { packageA, packageB10, packageB101, packageC };
 
