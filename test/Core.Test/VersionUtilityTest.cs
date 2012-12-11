@@ -1,3 +1,4 @@
+using NuGet.Test.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace NuGet.Test
         [InlineData("netum\\who\\bar.dll", "who\\bar.dll")]
         public void ParseFrameworkFolderNameStrictReturnsUnsupportedFxIfParsingFails(string path, string expectedEffectivePath)
         {
+            path = PathFixUtility.FixPath(path);
+            expectedEffectivePath = PathFixUtility.FixPath(expectedEffectivePath);
+
             // Act
             string effectivePath;
             var frameworkName = VersionUtility.ParseFrameworkFolderName(
@@ -39,6 +43,9 @@ namespace NuGet.Test
         public void TestParseFrameworkFolderNameFromFilePath(
             string filePath, string expectedVersion, string expectedIdentifier, string expectedEffectivePath)
         {
+            filePath = PathFixUtility.FixPath(filePath);
+            expectedEffectivePath = PathFixUtility.FixPath(expectedEffectivePath);
+
             // Act
             string effectivePath;
             var frameworkName = VersionUtility.ParseFrameworkNameFromFilePath(filePath, out effectivePath);
@@ -73,6 +80,10 @@ namespace NuGet.Test
         public void TestParseFrameworkFolderNameWithStrickParsing(
             string filePath, string expectedVersion, string expectedIdentifier, string expectedEffectivePath)
         {
+            filePath = PathFixUtility.FixPath(filePath);
+            expectedEffectivePath = PathFixUtility.FixPath(expectedEffectivePath);
+
+
             // Act
             string effectivePath;
             var frameworkName = VersionUtility.ParseFrameworkFolderName(filePath, strictParsing: true, effectivePath: out effectivePath);
@@ -107,6 +118,9 @@ namespace NuGet.Test
         public void TestParseFrameworkFolderNameWithNonStrickParsing(
             string filePath, string expectedVersion, string expectedIdentifier, string expectedEffectivePath)
         {
+            filePath = PathFixUtility.FixPath(filePath);
+            expectedEffectivePath = PathFixUtility.FixPath(expectedEffectivePath);
+
             // Act
             string effectivePath;
             var frameworkName = VersionUtility.ParseFrameworkFolderName(filePath, strictParsing: false, effectivePath: out effectivePath);
@@ -131,6 +145,9 @@ namespace NuGet.Test
         [InlineData("content\\-world\\x.dll", "-world\\x.dll")]
         public void ParseFrameworkNameFromFilePathDoesNotThrowIfPathHasADash(string path, string expectedPath)
         {
+            path = PathFixUtility.FixPath(path);
+            expectedPath = PathFixUtility.FixPath(expectedPath);
+
             // Act
             string effectivePath;
             var framework = VersionUtility.ParseFrameworkNameFromFilePath(path, out effectivePath);
@@ -477,13 +494,13 @@ namespace NuGet.Test
             // {FrameworkName}{Version}\foo.dll
             // {FrameworkName}{Version}\sub1\foo.dll
             // {FrameworkName}{Version}\sub1\sub2\foo.dll
-            var f1 = VersionUtility.ParseFrameworkFolderName(@"foo.dll");
-            var f2 = VersionUtility.ParseFrameworkFolderName(@"sub\foo.dll");
-            var f3 = VersionUtility.ParseFrameworkFolderName(@"SL4\foo.dll");
-            var f4 = VersionUtility.ParseFrameworkFolderName(@"SL3\sub1\foo.dll");
-            var f5 = VersionUtility.ParseFrameworkFolderName(@"SL20\sub1\sub2\foo.dll");
-            var f6 = VersionUtility.ParseFrameworkFolderName(@"net\foo.dll");
-            var f7 = VersionUtility.ParseFrameworkFolderName(@"winrt45\foo.dll");
+            var f1 = VersionUtility.ParseFrameworkFolderName(PathFixUtility.FixPath(@"foo.dll"));
+            var f2 = VersionUtility.ParseFrameworkFolderName(PathFixUtility.FixPath(@"sub\foo.dll"));
+            var f3 = VersionUtility.ParseFrameworkFolderName(PathFixUtility.FixPath(@"SL4\foo.dll"));
+            var f4 = VersionUtility.ParseFrameworkFolderName(PathFixUtility.FixPath(@"SL3\sub1\foo.dll"));
+            var f5 = VersionUtility.ParseFrameworkFolderName(PathFixUtility.FixPath(@"SL20\sub1\sub2\foo.dll"));
+            var f6 = VersionUtility.ParseFrameworkFolderName(PathFixUtility.FixPath(@"net\foo.dll"));
+            var f7 = VersionUtility.ParseFrameworkFolderName(PathFixUtility.FixPath(@"winrt45\foo.dll"));
 
             Assert.Null(f1);
             Assert.Equal("Unsupported", f2.Identifier);
