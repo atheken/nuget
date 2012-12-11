@@ -4,7 +4,6 @@ using Moq;
 using NuGet.Runtime;
 using NuGet.Test.Mocks;
 using Xunit;
-using NuGet.Test.Utility;
 
 namespace NuGet.Test
 {
