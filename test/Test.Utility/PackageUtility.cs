@@ -207,6 +207,8 @@ namespace NuGet.Test
 
         private static List<IPackageAssemblyReference> CreateAssemblyReferences(IEnumerable<string> fileNames)
         {
+            fileNames = (fileNames ?? Enumerable.Empty<String>()).Select(PathFixUtility.FixPath);
+
             var assemblyReferences = new List<IPackageAssemblyReference>();
             foreach (var fileName in fileNames)
             {
