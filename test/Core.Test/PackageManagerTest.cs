@@ -4,6 +4,7 @@ using System.IO;
 using Moq;
 using NuGet.Test.Mocks;
 using Xunit;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test
 {
@@ -666,7 +667,7 @@ namespace NuGet.Test
             var fileSystem = new Mock<MockFileSystem> { CallBase = true };
             var batchProcessor = fileSystem.As<IBatchProcessor<string>>();
             batchProcessor.Setup(s => s.BeginProcessing(It.IsAny<IEnumerable<string>>(), PackageAction.Install))
-                          .Callback((IEnumerable<string> files, PackageAction _) => Assert.Equal(new[] { @"content\content.txt", "Ref.dll" }, files))
+                          .Callback((IEnumerable<string> files, PackageAction _) => Assert.Equal(new[] { PathFixUtility.FixPath(@"content\content.txt"), "Ref.dll" }, files))
                           .Verifiable();
             batchProcessor.Setup(s => s.EndProcessing()).Verifiable();
 
