@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NuGet.Analysis.Rules;
 using Xunit;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test.Analysis
 {
@@ -37,6 +38,7 @@ namespace NuGet.Test.Analysis
 
         private void AssertIssue(PackageIssue packageIssue, string file)
         {
+            file = PathFixUtility.FixPath(file);
             Assert.Equal("Init.ps1 script will be ignored.", packageIssue.Title);
             Assert.Equal("Place the file directly under 'tools' folder.", packageIssue.Solution);
             Assert.Equal("The file '" + file + "' will be ignored by NuGet because it is not directly under 'tools' folder.", packageIssue.Description);
