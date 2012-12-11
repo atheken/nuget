@@ -546,7 +546,7 @@ namespace NuGet.Test
             settings.SetNestedValues("SectionName", "MyKey", values);
 
             // Assert
-            Assert.Equal(
+            XDocumentAssert.Equal(
 @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
@@ -582,7 +582,7 @@ namespace NuGet.Test
             settings.SetNestedValues("SectionName", "MyKey2", values);
 
             // Assert
-            Assert.Equal(
+            XDocumentAssert.Equal(
 @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
@@ -622,7 +622,7 @@ namespace NuGet.Test
             settings.SetNestedValues("SectionName", "MyKey", values);
 
             // Assert
-            Assert.Equal(
+            XDocumentAssert.Equal(
 @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
@@ -1247,7 +1247,7 @@ namespace NuGet.Test
             string result = settings.GetValue("SectionName", "path-key", isPath: true);
 
             // Assert
-            Assert.Equal(value, result);
+            XDocumentAssert.Equal(value, result);
         }
 
         [Fact]
