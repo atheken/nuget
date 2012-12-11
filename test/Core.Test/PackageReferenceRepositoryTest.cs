@@ -7,6 +7,7 @@ using Xunit;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Runtime.Versioning;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test
 {
@@ -361,7 +362,7 @@ namespace NuGet.Test
             Assert.Equal(2, packages.Count);
             Assert.Same(packageC, packages[0]);
             Assert.Same(packageA, packages[1]);
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <packages>
   <package id=""C"" version=""2.0"" />
   <package id=""B"" version=""1.0"" />

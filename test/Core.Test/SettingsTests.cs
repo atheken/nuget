@@ -5,6 +5,7 @@ using Moq;
 using Xunit;
 using NuGet.Test.Mocks;
 using Xunit.Extensions;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test
 {
@@ -305,7 +306,7 @@ namespace NuGet.Test
             settings.SetValue("NewSectionName", "key", "value");
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -335,7 +336,7 @@ namespace NuGet.Test
             settings.SetValue("SectionName", "keyTwo", "valueTwo");
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -363,7 +364,7 @@ namespace NuGet.Test
             settings.SetValue("SectionName", "key", "NewValue");
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""NewValue"" />
@@ -426,7 +427,7 @@ namespace NuGet.Test
             settings.SetValues("NewSectionName", values);
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -457,7 +458,7 @@ namespace NuGet.Test
             settings.SetValues("SectionName", values);
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -487,7 +488,7 @@ namespace NuGet.Test
             settings.SetValues("SectionName", values);
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""NewValue"" />
@@ -517,7 +518,7 @@ namespace NuGet.Test
             settings.SetValues("SectionName", values);
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""Value"" />
@@ -716,7 +717,7 @@ namespace NuGet.Test
 
             // Act & Assert
             Assert.True(settings.DeleteValue("SectionName", "DeleteMe"));
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""keyNotToDelete"" value=""value"" />
@@ -778,7 +779,7 @@ namespace NuGet.Test
 
             // Act & Assert
             Assert.True(settings.DeleteSection("SectionName"));
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName2>
     <add key=""key"" value=""value"" />

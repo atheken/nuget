@@ -6,6 +6,7 @@ using Moq;
 using NuGet.Test.Mocks;
 using Xunit;
 using Xunit.Extensions;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test
 {
@@ -750,7 +751,7 @@ namespace NuGet.Test
             projectManager.AddPackageReference("A");
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <configSections>
     <add a=""n"" />
@@ -796,7 +797,7 @@ namespace NuGet.Test
             projectManager.RemovePackageReference("A");
 
             // Assert
-            Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <system.web>
     <compilation baz=""test"" />
