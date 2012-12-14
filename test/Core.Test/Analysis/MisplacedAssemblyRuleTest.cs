@@ -2,6 +2,7 @@
 using System.Linq;
 using NuGet.Analysis.Rules;
 using Xunit;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test.Analysis
 {
@@ -52,7 +53,7 @@ namespace NuGet.Test.Analysis
             PackageIssueTestHelper.AssertPackageIssue(
                 issues[0],
                 "Assembly not inside a framework folder.",
-                "The assembly 'lib\\abc.exe' is placed directly under 'lib' folder. It is recommended that assemblies be placed inside a framework-specific folder.",
+                "The assembly '" + PathFixUtility.FixPath("lib\\abc.exe") + "' is placed directly under 'lib' folder. It is recommended that assemblies be placed inside a framework-specific folder.",
                 "Move it into a framework-specific folder. If this assembly is targeted for multiple frameworks, ignore this warning."
             );
         }
@@ -72,14 +73,14 @@ namespace NuGet.Test.Analysis
             PackageIssueTestHelper.AssertPackageIssue(
                 issues[0],
                 "Assembly not inside a framework folder.",
-                "The assembly 'lib\\abc.dll' is placed directly under 'lib' folder. It is recommended that assemblies be placed inside a framework-specific folder.",
+                "The assembly '" + PathFixUtility.FixPath("lib\\abc.dll") + "' is placed directly under 'lib' folder. It is recommended that assemblies be placed inside a framework-specific folder.",
                 "Move it into a framework-specific folder. If this assembly is targeted for multiple frameworks, ignore this warning."
                 );
 
             PackageIssueTestHelper.AssertPackageIssue(
                 issues[1],
                 "Assembly not inside a framework folder.",
-                "The assembly 'lib\\def.winmd' is placed directly under 'lib' folder. It is recommended that assemblies be placed inside a framework-specific folder.",
+                "The assembly '" + PathFixUtility.FixPath("lib\\def.winmd") + "' is placed directly under 'lib' folder. It is recommended that assemblies be placed inside a framework-specific folder.",
                 "Move it into a framework-specific folder. If this assembly is targeted for multiple frameworks, ignore this warning."
                 );
         }
@@ -100,7 +101,7 @@ namespace NuGet.Test.Analysis
             PackageIssueTestHelper.AssertPackageIssue(
                 issues[0],
                 "Assembly outside lib folder.",
-                "The assembly 'tools\\def.winmd' is not inside the 'lib' folder and hence it won't be added as reference when the package is installed into a project.",
+                "The assembly '" + PathFixUtility.FixPath("tools\\def.winmd") + "' is not inside the 'lib' folder and hence it won't be added as reference when the package is installed into a project.",
                 "Move it into the 'lib' folder if it should be referenced."
                 );
         }

@@ -306,7 +306,7 @@ namespace NuGet.Test
             settings.SetValue("NewSectionName", "key", "value");
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -336,7 +336,7 @@ namespace NuGet.Test
             settings.SetValue("SectionName", "keyTwo", "valueTwo");
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -364,7 +364,7 @@ namespace NuGet.Test
             settings.SetValue("SectionName", "key", "NewValue");
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""NewValue"" />
@@ -427,7 +427,7 @@ namespace NuGet.Test
             settings.SetValues("NewSectionName", values);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -458,7 +458,7 @@ namespace NuGet.Test
             settings.SetValues("SectionName", values);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""value"" />
@@ -488,7 +488,7 @@ namespace NuGet.Test
             settings.SetValues("SectionName", values);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""NewValue"" />
@@ -518,7 +518,7 @@ namespace NuGet.Test
             settings.SetValues("SectionName", values);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""key"" value=""Value"" />
@@ -546,7 +546,7 @@ namespace NuGet.Test
             settings.SetNestedValues("SectionName", "MyKey", values);
 
             // Assert
-            XDocumentAssert.Equal(
+            XmlAssert.Equal(
 @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
@@ -582,7 +582,7 @@ namespace NuGet.Test
             settings.SetNestedValues("SectionName", "MyKey2", values);
 
             // Assert
-            XDocumentAssert.Equal(
+            XmlAssert.Equal(
 @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
@@ -622,7 +622,7 @@ namespace NuGet.Test
             settings.SetNestedValues("SectionName", "MyKey", values);
 
             // Assert
-            XDocumentAssert.Equal(
+            XmlAssert.Equal(
 @"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
@@ -717,7 +717,7 @@ namespace NuGet.Test
 
             // Act & Assert
             Assert.True(settings.DeleteValue("SectionName", "DeleteMe"));
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName>
     <add key=""keyNotToDelete"" value=""value"" />
@@ -779,7 +779,7 @@ namespace NuGet.Test
 
             // Act & Assert
             Assert.True(settings.DeleteSection("SectionName"));
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <SectionName2>
     <add key=""key"" value=""value"" />
@@ -888,7 +888,7 @@ namespace NuGet.Test
             settings.Verify();
         }
 
-        [Fact]
+		[Fact]
         public void GetConfigSettingReadsEncryptedValueFromConfigSection()
         {
             // Arrange
@@ -1247,7 +1247,7 @@ namespace NuGet.Test
             string result = settings.GetValue("SectionName", "path-key", isPath: true);
 
             // Assert
-            XDocumentAssert.Equal(value, result);
+            XmlAssert.Equal(value, result);
         }
 
         [Fact]

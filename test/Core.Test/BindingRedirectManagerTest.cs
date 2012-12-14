@@ -4,6 +4,7 @@ using Moq;
 using NuGet.Runtime;
 using NuGet.Test.Mocks;
 using Xunit;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test
 {
@@ -25,7 +26,7 @@ namespace NuGet.Test
 
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">
@@ -69,7 +70,7 @@ namespace NuGet.Test
 
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">
@@ -117,7 +118,7 @@ namespace NuGet.Test
 
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">
@@ -154,7 +155,7 @@ namespace NuGet.Test
 
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">
@@ -196,7 +197,7 @@ namespace NuGet.Test
 
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">
@@ -236,7 +237,7 @@ namespace NuGet.Test
 
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1""></assemblyBinding>
@@ -273,7 +274,7 @@ namespace NuGet.Test
 
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">
@@ -313,7 +314,7 @@ namespace NuGet.Test
             // Assert
             string outputContent = mockFileSystem.OpenFile("config").ReadToEnd();
 
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <runtime>
     <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">

@@ -362,7 +362,7 @@ namespace NuGet.Test
             Assert.Equal(2, packages.Count);
             Assert.Same(packageC, packages[0]);
             Assert.Same(packageA, packages[1]);
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <packages>
   <package id=""C"" version=""2.0"" />
   <package id=""B"" version=""1.0"" />

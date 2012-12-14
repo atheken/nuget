@@ -34,7 +34,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -66,7 +66,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -99,7 +99,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -134,7 +134,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -174,7 +174,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -215,7 +215,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -255,7 +255,7 @@ namespace NuGet.Test
                 var manifestStream = GetManifestStream(ms);
 
                 // Assert
-                XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+                XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -291,7 +291,7 @@ namespace NuGet.Test
                 var manifestStream = GetManifestStream(ms);
 
                 // Assert
-                XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+                XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -327,7 +327,7 @@ namespace NuGet.Test
                 var manifestStream = GetManifestStream(ms);
 
                 // Assert
-                XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+                XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -363,7 +363,7 @@ namespace NuGet.Test
                 var manifestStream = GetManifestStream(ms);
 
                 // Assert
-                XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+                XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -402,7 +402,7 @@ namespace NuGet.Test
                 var manifestStream = GetManifestStream(ms);
 
                 // Assert
-                XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+                XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -445,7 +445,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"">
   <metadata>
     <id>A</id>
@@ -501,7 +501,7 @@ namespace NuGet.Test
             ms.Seek(0, SeekOrigin.Begin);
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0""?>
+            XmlAssert.Equal(@"<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">
   <metadata>
     <id>A</id>

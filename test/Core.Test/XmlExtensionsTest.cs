@@ -119,7 +119,7 @@ namespace NuGet.Test
             var result = a.MergeWith(b).ToString();
 
             // Assert            
-            XElementAssert.Equal(@"<tests>
+            XmlAssert.Equal(@"<tests>
   <!-- this is a comment -->
   <test name=""one"" value=""foo"">
     <!-- this is a comment inside element -->
@@ -154,7 +154,7 @@ namespace NuGet.Test
             var result = a.MergeWith(b).ToString();
 
             // Assert            
-            XElementAssert.Equal(@"<tests>
+            XmlAssert.Equal(@"<tests>
   <test name=""one"" value=""foo"" />
   <!-- this file contains only comment
          hahaha, you like that? -->
@@ -262,7 +262,7 @@ namespace NuGet.Test
             var result = a.Except(b);
 
             // Assert
-            XElementAssert.Equal(@"<tests>
+            XmlAssert.Equal(@"<tests>
   <test name=""One"" value=""foo"" />
 </tests>", result.ToString());
         }
@@ -286,7 +286,7 @@ namespace NuGet.Test
             var result = a.Except(b);
 
             // Assert
-            XElementAssert.Equal(@"<tests>
+            XmlAssert.Equal(@"<tests>
   <test name=""One"" value=""foo"" />
   <!-- this is a comment -->
 </tests>", result.ToString());
@@ -310,7 +310,7 @@ namespace NuGet.Test
             var result = a.Except(b);
 
             // Assert
-            XElementAssert.Equal(@"<tests>
+            XmlAssert.Equal(@"<tests>
   <test name=""One"" value=""foo"" />
 </tests>", result.ToString());
         }
@@ -339,7 +339,7 @@ namespace NuGet.Test
             var result = a.Except(b);
 
             // Assert
-            XElementAssert.Equal("<configuration />", result.ToString());
+            XmlAssert.Equal("<configuration></configuration>", result.ToString());
         }
 
         private static void AssertAttributeValue(XElement element, string attributeName, string expectedAttributeValue)

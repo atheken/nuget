@@ -274,7 +274,7 @@ namespace NuGet.Test
 
             // Assert
             Assert.True(configFileSystem.FileExists("packages.config"));
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <packages>
   <package id=""A"" version=""2.0"" />
 </packages>", configFileSystem.ReadAllText("packages.config"));
@@ -298,7 +298,7 @@ namespace NuGet.Test
 
             // Assert
             Assert.True(configFileSystem.FileExists("packages.config"));
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <packages>
   <package id=""A"" version=""2.0"" />
   <package id=""B"" version=""1.0"" />
@@ -324,7 +324,7 @@ namespace NuGet.Test
 
             // Assert
             Assert.True(configFileSystem.FileExists("packages.config"));
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <packages>
   <package id=""A"" version=""2.0"" />
   <package id=""B"" version=""1.0"" />
@@ -358,7 +358,7 @@ namespace NuGet.Test
 
             // Act
             repository.AddPackageReferenceEntry(solutionPackage.Id, solutionPackage.Version);
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <packages>
   <package id=""SolutionLevel"" version=""1.0"" />
 </packages>", configFileSystem.ReadAllText("packages.config"));
@@ -403,7 +403,7 @@ namespace NuGet.Test
 
             // Assert
             Assert.True(configFileSystem.FileExists("packages.config"));
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <packages>
   <package id=""A"" version=""2.0"" />
 </packages>", configFileSystem.ReadAllText("packages.config"));
@@ -441,7 +441,7 @@ namespace NuGet.Test
             repository.RegisterRepository(@"x:\foo\packages\packages.config");
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <repositories>
   <repository path=""packages\packages.config"" />
 </repositories>", fileSystem.Object.ReadAllText("repositories.config"));
@@ -464,7 +464,7 @@ namespace NuGet.Test
             repository.RegisterRepository(@"x:\foo\A\packages.config");
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <repositories>
   <repository path=""A\packages.config"" />
   <repository path=""B\packages.config"" />
@@ -498,7 +498,7 @@ namespace NuGet.Test
             Assert.Equal(2, paths.Count);
             Assert.Equal(@"A\packages.config", paths[0]);
             Assert.Equal(@"..\..\packages.config", paths[1]);
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <repositories>
   <repository path=""A\packages.config"" />
   <repository path=""x:\foo\packages.config"" />
@@ -519,7 +519,7 @@ namespace NuGet.Test
             repository.RegisterRepository(@"x:\foo\a\packages\packages.config");
 
             // Assert
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <repositories>
   <repository path=""a\packages\packages.config"" />
   <repository path=""X\packages\packages.config"" />
@@ -606,7 +606,7 @@ namespace NuGet.Test
             // Assert
             Assert.True(storeFileSystem.FileExists("repositories.config"));
             string content = storeFileSystem.ReadAllText("repositories.config");
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <repositories>
   <repository path=""project1\path"" />
 </repositories>", content);
@@ -635,7 +635,7 @@ namespace NuGet.Test
             // Assert
             Assert.True(storeFileSystem.FileExists("repositories.config"));
             string content = storeFileSystem.ReadAllText("repositories.config");
-            XDocumentAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            XmlAssert.Equal(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <repositories>
   <repository path=""..\one\two"" />
 </repositories>", content);
