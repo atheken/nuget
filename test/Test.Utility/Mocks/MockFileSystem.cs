@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NuGet.Test.Utility;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace NuGet.Test.Mocks
 
         public MockFileSystem(string root)
         {
-            Root = root;
+            Root = PathFixUtility.FixPath(root);
             Paths = new Dictionary<string, Func<Stream>>(StringComparer.OrdinalIgnoreCase);
             Deleted = new HashSet<string>();
             _createdTime = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);

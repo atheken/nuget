@@ -2,6 +2,7 @@
 using System.Linq;
 using NuGet.Analysis.Rules;
 using Xunit;
+using NuGet.Test.Utility;
 
 namespace NuGet.Test.Analysis
 {
@@ -57,7 +58,8 @@ namespace NuGet.Test.Analysis
             PackageIssueTestHelper.AssertPackageIssue(
                 issues[0],
                 "Transform file outside content folder.",
-                "The transform file 'tools\\web.config.transform' is outside the 'content' folder and hence will not be transformed during installation of this package.",
+                "The transform file '" + PathFixUtility.FixPath("tools\\web.config.transform") +
+                "' is outside the 'content' folder and hence will not be transformed during installation of this package.",
                 "Move it into the 'content' folder.");
 
             PackageIssueTestHelper.AssertPackageIssue(

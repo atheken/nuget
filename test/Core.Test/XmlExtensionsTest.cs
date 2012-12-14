@@ -338,8 +338,13 @@ namespace NuGet.Test
             // Act
             var result = a.Except(b);
 
+#if !MONO
             // Assert
+            XmlAssert.Equal("<configuration />", result.ToString());
+#else
+            //Mono doesn't automagically collapse "empty" elements, .Net XElement does. :-/
             XmlAssert.Equal("<configuration></configuration>", result.ToString());
+#endif
         }
 
         private static void AssertAttributeValue(XElement element, string attributeName, string expectedAttributeValue)
